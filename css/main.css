@@ -1,0 +1,17 @@
+/* line 52, main.scss */
+body {
+  color: #000;
+  background-color: #7e7e7e; }
+
+/* line 56, main.scss */
+body, html {
+  width: 100%;
+  height: 100%; }
+
+/* line 60, main.scss */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
