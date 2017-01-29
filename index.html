@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="script/jquery-3.1.1.slim.js"></script>
     <script src="script/aframe-v0.4.0.js"></script>
+    <script src="script/googlemapapi.js"></script>
+    
     <script src="script/vue.js"></script>
     <script src="script/main.js"></script>
 </head>
@@ -15,7 +17,7 @@
     <div id="backyard">
     </div>
     <div id="vrbase" class="screen">
-        <a-scene vr-mode-ui="enabled:true"  fog="type: linear; color: #3ab6cc;near: 100; far: 5000" id="app">
+        <a-scene vr-mode-ui="enabled:true" id="app">
             
               <a-assets>
                   <img id="footTokyoTower" src="images/foottokyo.png">
@@ -23,8 +25,10 @@
                   <a-aset-item id="arrow" src="object/arrow.dae"></a-aset-item>
               </a-assets>
             <a-sky color = "#00aa96"></a-sky>
-            <a-entity collada-model="#tokyotower" position="0 0 -2000"></a-entity>
-            <a-entity position="0 0 0" id="arrowfoot">
+            <a-entity position="0 0 0" rotation="0 0 0" id="tokyotowerBase">
+                <a-entity collada-model="#tokyotower" position="0 0 -20" id="tokyotowerModel"></a-entity>
+            </a-entity>
+            <a-entity position="0 0 0" id="arrowfoot" rotation="0 0 0">
                     <a-image src="#footTokyoTower" position="0 0.02 0" rotation="-90 0 0" width="1" height="1"></a-image>
                     <a-entity collada-model="#arrow" position="-0.02 0 -0.4" rotation="0 90 0"></a-entity>
             </a-entity>
@@ -33,6 +37,8 @@
             <a-entity camera="userHeight: 1.6; fov:40; zoom:1;" look-controls direct="0 0 0" id="basecam">
             </a-entity>
         </a-scene>
+    </div>
+    <div id="console" class="screen">
     </div>
 </div>
 
