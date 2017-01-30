@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded',function(event){
     
         window.ondeviceorientation = function(event) {
             // 電子コンパスの情報を取得（0が北、90が東…）
-            var north = compassHeading(event.alpha,event.beta,event,gamma);
+            var north = compassHeading(event.alpha,event.beta,event.gamma);
             console.log(north);
             consoletarget.innerHTML = north;
         }
