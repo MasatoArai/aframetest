@@ -64,7 +64,30 @@ document.addEventListener('DOMContentLoaded',function(event){
                 arrowfoot.setAttribute('rotation',{x:0,y:-direct,z:0});
                 //mainCam.components['look-controls'].yawObject.rotation.y=0-(((360+direct)%360) * Math.PI / 180);
             } , function(e){
-                consoleDiv2.innerHTML ="取得失敗";
+                
+			// エラーコード(error.code)の番号
+			// 0:UNKNOWN_ERROR				原因不明のエラー
+			// 1:PERMISSION_DENIED			利用者が位置情報の取得を許可しなかった
+			// 2:POSITION_UNAVAILABLE		電波状況などで位置情報が取得できなかった
+			// 3:TIMEOUT					位置情報の取得に時間がかかり過ぎた…
+
+			// エラー番号に対応したメッセージ
+			var errorInfo = [
+				"原因不明のエラーが発生しました…。" ,
+				"位置情報の取得が許可されませんでした…。" ,
+				"電波状況などで位置情報が取得できませんでした…。" ,
+				"位置情報の取得に時間がかかり過ぎてタイムアウトしました…。"
+			] ;
+
+			// エラー番号
+			var errorNo = error.code ;
+
+			// エラーメッセージ
+			var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+
+
+			// HTMLに書き出し
+                consoleDiv2.innerHTML =errorMessage;
             } , {
                 enableHighAccuracy:true,
                 timeout:10000,
