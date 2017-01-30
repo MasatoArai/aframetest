@@ -9,14 +9,23 @@
         
 document.addEventListener('DOMContentLoaded',function(event){
     var consoletarget = document.querySelector('#d');
+    var consoletarget2 = document.querySelector('#e');
     consoletarget.innerHTML = "standby";
+    consoletarget2.innerHTML = "standby";
     
-        window.ondeviceorientation = function(event) {
-            // 電子コンパスの情報を取得（0が北、90が東…）
+    if (window.DeviceOrientationEvent) {
+      // Listen for the deviceorientation event and handle the raw data
+      window.addEventListener('deviceorientation', function(event) {
             var north = compassHeading(event.alpha,event.beta,event.gamma);
-            console.log(north);
-            consoletarget.innerHTML = north;
+        var compassdir;
+        if(event.webkitCompassHeading) {
+          // Apple works only with this, alpha doesn't work
+          compassdir = event.webkitCompassHeading;  
         }
+            consoletarget.innerHTML = north;
+            consoletarget2.innerHTML = compassdir;
+      });
+    }
 });
         function compassHeading(alpha, beta, gamma) {
           var degtorad = Math.PI / 180; // Degree-to-Radian conversion
@@ -53,8 +62,7 @@ document.addEventListener('DOMContentLoaded',function(event){
 <body style="background-color:#fff">
     <div id="d" style="font-size:10vmin">
     </div>
-
-
-
+    <div id="e" style="font-size:10vmin;color:red">
+    </div>
 </body>
 </html>
