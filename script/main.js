@@ -19,20 +19,6 @@ document.addEventListener('DOMContentLoaded',function(event){
             //consoleDiv.innerHTML = north;
             consoleDiv.innerHTML = compassdir;
       });
-    
-    
-    
-    mainCam = document.querySelector('#basecam');
-    mainCam.addEventListener('loaded',function(ev){
-        window.ondeviceorientation = function(event) {
-            // 電子コンパスの情報を取得（0が北、90が東…）
-            var w = event.webkitCompassHeading;
-            console.log(w);
-            consoleDiv.innerHTML = w;
-        }
-        
-        
-        
         if( navigator.geolocation ){
             // 現在位置を取得できる場合の処理
             consoleDiv2.innerHTML ="ready";
@@ -78,13 +64,17 @@ document.addEventListener('DOMContentLoaded',function(event){
                 arrowfoot.setAttribute('rotation',{x:0,y:-direct,z:0});
                 //mainCam.components['look-controls'].yawObject.rotation.y=0-(((360+direct)%360) * Math.PI / 180);
             } , function(e){
-                console.error("取得失敗");
+                consoleDiv2.innerHTML ="取得失敗";
             } , {
                 enableHighAccuracy:true,
                 timeout:10000,
-                maximumAge:50000
+                maximumAge:1000
             } ) ;
         }
+    
+    
+    mainCam = document.querySelector('#basecam');
+    mainCam.addEventListener('loaded',function(ev){
         });
 
 });
