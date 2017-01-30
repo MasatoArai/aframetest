@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded',function(event){
     if (window.DeviceOrientationEvent) {
       // Listen for the deviceorientation event and handle the raw data
       window.addEventListener('deviceorientation', function(event) {
-            var north = compassHeading(event.alpha,event.beta,event.gamma);
         var compassdir;
         if(event.webkitCompassHeading) {
           // Apple works only with this, alpha doesn't work
           compassdir = event.webkitCompassHeading;  
         }
+            var north = compassHeading(event.webkitCompassHeading,event.beta,event.gamma);
             consoletarget.innerHTML = north;
             consoletarget2.innerHTML = compassdir;
       });
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded',function(event){
 <body style="background-color:#fff">
     <div id="d" style="font-size:10vmin">
     </div>
-    <div id="e" style="font-size:10vmin;color:red">
+    <div id="e" style="font-size:10vmin;color:#ff9300">
     </div>
 </body>
 </html>
