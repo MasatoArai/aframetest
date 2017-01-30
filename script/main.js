@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded',function(event){
         
         if( navigator.geolocation ){
             // 現在位置を取得できる場合の処理
+            consoleDiv2.innerHTML ="test";
             navigator.geolocation.getCurrentPosition( function(e){
                 if(!e)return;
                 mylatlng.lat = e.coords.latitude;
