@@ -8,6 +8,7 @@ var mainCam={};
 document.addEventListener('DOMContentLoaded',function(event){
     
     var consoleDiv = document.querySelector('#console');
+    var consoleDiv2 = document.querySelector('#console2');
       window.addEventListener('deviceorientation', function(event) {
         var compassdir;
         if(event.webkitCompassHeading) {
@@ -50,6 +51,9 @@ document.addEventListener('DOMContentLoaded',function(event){
                 //console.log("x:"+(0-distance * Math.sin(direct)));
                 console.log("direct:"+direct);
                 console.log('defort:'+((360+direct)%360));
+                
+            consoleDiv2.innerHTML = "direct:"+direct+'<br>'+'defort:'+((360+direct)%360)+'<br>'+'distance:'+distance+"m";
+                
                 var x=0-distance * Math.sin(direct);
                 var y=distance * Math.cos(direct);
                 /*if(Math.abs(y)>5000){
