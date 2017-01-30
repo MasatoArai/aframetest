@@ -8,6 +8,12 @@ var mainCam={};
 document.addEventListener('DOMContentLoaded',function(event){
     mainCam = document.querySelector('#basecam');
     mainCam.addEventListener('loaded',function(ev){
+        window.ondeviceorientation = function(event) {
+            // 電子コンパスの情報を取得（0が北、90が東…）
+            var w = event.webkitCompassHeading;
+            console.log(w);
+            consoleDiv.innerHTML = w;
+        }
         if( navigator.geolocation ){
             // 現在位置を取得できる場合の処理
             navigator.geolocation.getCurrentPosition( function(e){
@@ -47,12 +53,6 @@ document.addEventListener('DOMContentLoaded',function(event){
                 tokyotower.setAttribute('position',{x:0,y:0,z:-distance});
                 base.setAttribute('rotation',{x:0,y:-direct,z:0});
                 arrowfoot.setAttribute('rotation',{x:0,y:-direct,z:0});
-                window.ondeviceorientation = function(event) {
-                    // 電子コンパスの情報を取得（0が北、90が東…）
-                    var w = event.webkitCompassHeading;
-                    console.log(w);
-                    consoleDiv.innerHTML = w;
-                }
                 //mainCam.components['look-controls'].yawObject.rotation.y=0-(((360+direct)%360) * Math.PI / 180);
             } , function(e){
                 console.error("取得失敗");
