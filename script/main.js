@@ -3,7 +3,7 @@ var mylatlng={lat:0,lon:0,heading:0};
 var tokyotowerLatLng = {lat:35.6585618,lng:139.7453056};
 var ntttwins = {lat:35.630453,lng:139.74228};
 var northDir = 0;
-var orientation = window.orientation
+var orientation = window.orientation||window.screen.orientation.angle;
 var mainCam={};
 
 
@@ -16,18 +16,18 @@ document.addEventListener('DOMContentLoaded',function(event){
     var TOKYOTOWER = new google.maps.LatLng(tokyotowerLatLng.lat, tokyotowerLatLng.lng); 
     var NTT = new google.maps.LatLng(ntttwins.lat,ntttwins.lng);
 
-    var distance = google.maps.geometry.spherical.computeDistanceBetween(myhplace, TOKYOTOWER);
-    var direct =  google.maps.geometry.spherical.computeHeading(myhplace, TOKYOTOWER);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(NTT, TOKYOTOWER);
+    var direct =  google.maps.geometry.spherical.computeHeading(NTT, TOKYOTOWER);
 
     window.addEventListener('deviceorientation',function(ev){
         var compassdir=ev.webkitCompassHeading||ev.alpha;
         compassdir=(360+(compassdir+orientation))%360;
         northDir=compassdir;
-        consoleDiv.innerHTML('North:'+northDir+'deg');
+        consoleDiv.innerHTML='North:'+northDir+'deg';
     });
     
     window.addEventListener('orientationchange',function(ev){
-        orientation = window.orientation;
+        orientation = window.orientation||window.screen.orientation.angle;
     });
     
     /*
