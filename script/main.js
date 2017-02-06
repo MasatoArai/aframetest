@@ -1,6 +1,9 @@
 var app;
 var mylatlng={lat:0,lon:0,heading:0};
 var tokyotowerLatLng = {lat:35.6585618,lng:139.7453056};
+var ntttwins = {lat:35.630453,lng:139.74228};
+var northDir = 0;
+var orientation = window.orientation
 var mainCam={};
 
 
@@ -9,6 +12,25 @@ document.addEventListener('DOMContentLoaded',function(event){
     
     var consoleDiv = document.querySelector('#console');
     var consoleDiv2 = document.querySelector('#console2');
+    
+    var TOKYOTOWER = new google.maps.LatLng(tokyotowerLatLng.lat, tokyotowerLatLng.lng); 
+    var NTT = new google.maps.LatLng(ntttwins.lat,ntttwins.lng);
+
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(myhplace, TOKYOTOWER);
+    var direct =  google.maps.geometry.spherical.computeHeading(myhplace, TOKYOTOWER);
+
+    window.addEventListener('deviceorientation',function(ev){
+        var compassdir=ev.webkitCompassHeading||ev.alpha;
+        compassdir=(360+(compassdir+orientation))%360;
+        northDir=compassdir;
+        consoleDiv.innerHTML('North:'+northDir+'deg');
+    });
+    
+    window.addEventListener('orientationchange',function(ev){
+        orientation = window.orientation;
+    });
+    
+    /*
       window.addEventListener('deviceorientation', function(event) {
         var compassdir;
         if(event.webkitCompassHeading) {
@@ -22,6 +44,7 @@ document.addEventListener('DOMContentLoaded',function(event){
         if( navigator.geolocation ){
             // 現在位置を取得できる場合の処理
             consoleDiv2.innerHTML ="ready";
+            
             navigator.geolocation.getCurrentPosition( function(e){
             consoleDiv2.innerHTML ="test2";
                 if(!e)return;
@@ -31,6 +54,7 @@ document.addEventListener('DOMContentLoaded',function(event){
                 
                 
                 var TOKYOTOWER = new google.maps.LatLng(tokyotowerLatLng.lat, tokyotowerLatLng.lng); 
+                var NTT = new google.maps.LatLng(ntttwins.lat,ntttwins.lng);
                 var myhplace = new google.maps.LatLng(mylatlng.lat,mylatlng.lng); 
                 
                 	var distance = google.maps.geometry.spherical.computeDistanceBetween(myhplace, TOKYOTOWER);
@@ -50,7 +74,6 @@ document.addEventListener('DOMContentLoaded',function(event){
                     }else{
                         y=5000;
                     }
-                }*/
                 if(Math.abs(distance)>5000){
                         distance = 5000;
                 }
@@ -93,7 +116,7 @@ document.addEventListener('DOMContentLoaded',function(event){
                 timeout:10000,
                 maximumAge:1000
             } ) ;
-        }
+        }*/
     
     
     mainCam = document.querySelector('#basecam');
