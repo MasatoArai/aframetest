@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',function(event){
 
     var distance = google.maps.geometry.spherical.computeDistanceBetween(NTT, TOKYOTOWER);
     var direct =  google.maps.geometry.spherical.computeHeading(NTT, TOKYOTOWER);
-
+    consoleDiv.innerHTML = "test";
     $(window).on('deviceorientation',function(ev){
         var compassdir=ev.originalEvent.webkitCompassHeading||ev.originalEvent.alpha;
         compassdir=(360+(compassdir+orientation))%360;
