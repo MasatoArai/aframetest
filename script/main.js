@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded',function(event){
     
     var consoleDiv = document.querySelector('#console');
     var consoleDiv2 = document.querySelector('#console2');
+    var tokyotower = document.querySelector('#tokyotowerModel');
+    var base = document.querySelector('#tokyotowerBase');
+    var arrowfoot = document.querySelector('#arrowfoot');
     
     //orientation = (window.screen)?window.screen.orientation.angle:window.orientation;
     consoleDiv2.innerHTML = orientation;
@@ -34,6 +37,12 @@ document.addEventListener('DOMContentLoaded',function(event){
         orientation = window.orientation;
     consoleDiv2.innerHTML = orientation;
     });
+    
+    
+    mainCam = document.querySelector('#basecam');
+    mainCam.addEventListener('loaded',function(ev){
+                tokyotower.setAttribute('position',{x:0,y:0,z:-distance});
+        });
     
     /*
       window.addEventListener('deviceorientation', function(event) {
@@ -124,8 +133,5 @@ document.addEventListener('DOMContentLoaded',function(event){
         }*/
     
     
-    mainCam = document.querySelector('#basecam');
-    mainCam.addEventListener('loaded',function(ev){
-        });
 
 });
