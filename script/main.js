@@ -3,8 +3,7 @@ var mylatlng={lat:0,lon:0,heading:0};
 var tokyotowerLatLng = {lat:35.6585618,lng:139.7453056};
 var ntttwins = {lat:35.630453,lng:139.74228};
 var northDir = 0;
-alert('test');
-var orientation = window.orientation||window.screen.orientation.angle;
+var orientation = window.orientation;
 var mainCam={};
 
 
