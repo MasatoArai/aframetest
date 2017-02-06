@@ -13,22 +13,24 @@ document.addEventListener('DOMContentLoaded',function(event){
     var consoleDiv = document.querySelector('#console');
     var consoleDiv2 = document.querySelector('#console2');
     
+    orientation = (window.screen)?window.screen.orientation.angle:window.orientation;
     consoleDiv2.innerHTML = orientation;
+    
     var TOKYOTOWER = new google.maps.LatLng(tokyotowerLatLng.lat, tokyotowerLatLng.lng); 
     var NTT = new google.maps.LatLng(ntttwins.lat,ntttwins.lng);
 
     var distance = google.maps.geometry.spherical.computeDistanceBetween(NTT, TOKYOTOWER);
     var direct =  google.maps.geometry.spherical.computeHeading(NTT, TOKYOTOWER);
-    consoleDiv.innerHTML = orientation+"falkj";
+    
     $(window).on('deviceorientation',function(ev){
         var compassdir=ev.originalEvent.webkitCompassHeading||ev.originalEvent.alpha;
         compassdir=(360+(compassdir+orientation))%360;
         northDir=compassdir;
-        //consoleDiv.innerHTML='North:'+northDir+'deg';
+        consoleDiv.innerHTML='North:'+northDir+'deg';
     });
     
     window.addEventListener('orientationchange',function(ev){
-        orientation = window.orientation||window.screen.orientation.angle;
+        orientation =  (window.screen)?window.screen.orientation.angle:window.orientation;
     consoleDiv2.innerHTML = orientation;
     });
     
