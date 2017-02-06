@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded',function(event){
     var consoleDiv = document.querySelector('#console');
     var consoleDiv2 = document.querySelector('#console2');
     
-    orientation = (window.screen)?window.screen.orientation.angle:window.orientation;
+    //orientation = (window.screen)?window.screen.orientation.angle:window.orientation;
     consoleDiv2.innerHTML = orientation;
     
     var TOKYOTOWER = new google.maps.LatLng(tokyotowerLatLng.lat, tokyotowerLatLng.lng); 
@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded',function(event){
     });
     
     window.addEventListener('orientationchange',function(ev){
-        orientation =  (window.screen)?window.screen.orientation.angle:window.orientation;
+       // orientation =  (window.screen)?window.screen.orientation.angle:window.orientation;
+        orientation = window.orientation;
     consoleDiv2.innerHTML = orientation;
     });
     
